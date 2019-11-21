@@ -14,7 +14,7 @@ class App extends Component {
             < div
         className = "App" >
 
-            < Header / >
+            < Header/>
             < Route
         exact
         path = "/dashboard"
@@ -25,8 +25,8 @@ class App extends Component {
         path = "/addProject"
         component = {AddProject}
         />
-        < /div>
-        < /Router>
+        </div>
+        </Router>
 
     )
         ;
