@@ -1,11 +1,16 @@
 package ferdis.personal.project.tool.ppm_tool.services;
 
+<<<<<<< HEAD
 import ferdis.personal.project.tool.ppm_tool.domain.Backlog;
 import ferdis.personal.project.tool.ppm_tool.domain.Project;
 import ferdis.personal.project.tool.ppm_tool.domain.ProjectTask;
 import ferdis.personal.project.tool.ppm_tool.exceptions.ProjectNotFoundException;
 import ferdis.personal.project.tool.ppm_tool.repositories.BacklogRepository;
 import ferdis.personal.project.tool.ppm_tool.repositories.ProjectRepository;
+=======
+import ferdis.personal.project.tool.ppm_tool.domain.ProjectTask;
+import ferdis.personal.project.tool.ppm_tool.repositories.BacklogRepository;
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
 import ferdis.personal.project.tool.ppm_tool.repositories.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +24,7 @@ public class ProjectTaskService {
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
 
+<<<<<<< HEAD
     @Autowired
     private ProjectRepository projectRepository;
 
@@ -69,5 +75,10 @@ public class ProjectTaskService {
     }
     public ProjectTask findPTByPrejectSequence(String backlog_id, String pt_id){
         return projectTaskRepository.findByProjectSequence(pt_id);
+=======
+    public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask){
+
+        return projectTaskRepository.save(projectTask);
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
     }
 }

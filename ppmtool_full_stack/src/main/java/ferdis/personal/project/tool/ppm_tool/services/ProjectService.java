@@ -14,9 +14,12 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+<<<<<<< HEAD
     @Autowired
     private BacklogRepository backlogRepository;
 
+=======
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
     public Project saveOrUpdateProject(Project project) {
         try {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
@@ -33,18 +36,30 @@ public class ProjectService {
             }
 
             return projectRepository.save(project);
+<<<<<<< HEAD
 
+=======
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
         } catch (Exception e) {
             throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase() + "' already exists");
         }
 
     }
+<<<<<<< HEAD
 
     public Project findProjectByIdentifier(String projectId) {
+=======
+    public Project findProjectByIdentifier(String projectId) {
+
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
         Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
 
         if (project == null) {
             throw new ProjectIdException("Project ID '" + projectId + "' does not exist");
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
         }
         return project;
     }
@@ -53,6 +68,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
     public void deleteProjectByIdentifier(String projectid) {
         Project project = projectRepository.findByProjectIdentifier(projectid.toUpperCase());
 

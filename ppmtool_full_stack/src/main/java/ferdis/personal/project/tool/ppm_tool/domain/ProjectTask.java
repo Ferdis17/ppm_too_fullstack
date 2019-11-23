@@ -1,5 +1,6 @@
 package ferdis.personal.project.tool.ppm_tool.domain;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -147,4 +148,7 @@ public class ProjectTask {
                 ", update_At=" + update_At +
                 '}';
     }
+=======
+public class ProjectTask {
+>>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
 }
