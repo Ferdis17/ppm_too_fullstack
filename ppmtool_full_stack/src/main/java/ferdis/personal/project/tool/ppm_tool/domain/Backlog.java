@@ -1,6 +1,5 @@
 package ferdis.personal.project.tool.ppm_tool.domain;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,7 @@ public class Backlog {
 
     //OneToOne with project
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="project_id",nullable = false)
+    @JoinColumn(name = "project_id", nullable = false)
     @JsonIgnore
     private Project project;
 
@@ -69,7 +68,5 @@ public class Backlog {
     public void setProjectTasks(List<ProjectTask> projectTasks) {
         this.projectTasks = projectTasks;
     }
-=======
-public class Backlog {
->>>>>>> b0e983aee93ac7ca31fb2da9ddb198a42a320cd2
+
 }
