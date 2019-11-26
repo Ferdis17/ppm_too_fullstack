@@ -1,7 +1,9 @@
 package ferdis.personal.project.tool.ppm_tool.services;
 
+import ferdis.personal.project.tool.ppm_tool.domain.Backlog;
 import ferdis.personal.project.tool.ppm_tool.domain.Project;
 import ferdis.personal.project.tool.ppm_tool.exceptions.ProjectIdException;
+import ferdis.personal.project.tool.ppm_tool.repositories.BacklogRepository;
 import ferdis.personal.project.tool.ppm_tool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,26 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private BacklogRepository backlogRepository;
+
     public Project saveOrUpdateProject(Project project){
         try{
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+
+            if(project.getId()==null){
+                Backlog backlog = new Backlog();
+                project.setBacklog(backlog);
+                backlog.setProject(project);
+                backlog.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+            }
+
+            if(project.getId()!=null){
+                project.setBacklog(backlogRepository.findByProjectIdentifier(project.getProjectIdentifier().toUpperCase()));
+            }
+
             return projectRepository.save(project);
+
         }catch (Exception e){
             throw new ProjectIdException("Project ID '"+project.getProjectIdentifier().toUpperCase()+"' already exists");
         }
@@ -50,4 +68,5 @@ public class ProjectService {
 
         projectRepository.delete(project);
     }
+
 }
