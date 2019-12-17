@@ -1,12 +1,19 @@
 package ferdis.personal.project.tool.ppm_tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +22,7 @@ public class User {
     @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String userName;
-    @NotBlank(message = "Please enter your full name")
+    //@NotBlank(message = "Please enter your full name")
     private String fullName;
     @NotBlank(message = "password field is required")
     private String password;
@@ -23,6 +30,9 @@ public class User {
     private String confirmPassword;
     private Date create_At;
     private Date update_At;
+
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
+    private List<Project> projects =  new ArrayList<>();
 
     public User(){
 
@@ -52,8 +62,43 @@ public class User {
         this.fullName = fullName;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+
+    @JsonIgnore
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
@@ -83,4 +128,24 @@ public class User {
     public void setUpdate_At(Date update_At) {
         this.update_At = update_At;
     }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    @PrePersist
+    public void onCreate(){
+        this.create_At = new Date();
+    }
+
+    @PreUpdate
+     public  void onUpdate(){
+        this.update_At = new Date();
+     }
+
+
 }
