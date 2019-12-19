@@ -71,10 +71,9 @@ public class User implements UserDetails {
         return password;
     }
 
-
-    @JsonIgnore
+    @Override
     public String getUsername() {
-        return null;
+        return userName;
     }
 
     @Override
