@@ -20,11 +20,11 @@ public class UserService {
 
         try{
             newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-            newUser.setUserName(newUser.getUserName());
+            newUser.setUserName(newUser.getUsername());
             newUser.setConfirmPassword("");
             return (User) userRepository.save(newUser);
         }catch (Exception ex){
-            throw new UserNameAlreadyExistsException("UserNAme " + newUser.getUserName()+ "already exists");
+            throw new UserNameAlreadyExistsException("UserNAme " + newUser.getUsername()+ "already exists");
         }
     }
 }
