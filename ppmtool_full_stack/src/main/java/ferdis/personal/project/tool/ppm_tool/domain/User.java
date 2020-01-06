@@ -46,7 +46,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return userName;
     }
 
@@ -71,10 +71,10 @@ public class User implements UserDetails {
         return password;
     }
 
-    @Override
-    public String getUsername() {
-        return userName;
-    }
+//    @Override
+//    public String getUsername() {
+//        return userName;
+//    }
 
     @Override
     @JsonIgnore
